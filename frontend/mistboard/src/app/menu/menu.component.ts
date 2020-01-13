@@ -7,12 +7,14 @@ import {AppService} from "../app.service";
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  appService: AppService;
+  private appService: AppService;
   constructor(appService: AppService) {
     this.appService = appService;
   }
 
   ngOnInit() {
   }
-
+  logout() {
+    this.appService.logout();
+  }
 }

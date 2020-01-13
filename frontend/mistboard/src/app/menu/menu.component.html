@@ -7,8 +7,8 @@
   </button>
   <div class="collapse navbar-collapse" id="menu">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a href="#" class="nav-link">Lista gier</a>
+      <li routerLinkActive="active" class="nav-item">
+        <a routerLink="/games" class="nav-link">Lista gier</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
@@ -22,10 +22,10 @@
           {{appService.isSignedIn() ? appService.getUsername() : 'Login'}}
         </a>
         <div class="dropdown-menu" aria-labelledby="userDropdownMenu">
-          <a *ngIf="appService.isSignedIn()" href="#" class="dropdown-item">
+          <a *ngIf="appService.isSignedIn()" (click)="logout()" class="dropdown-item">
             Logout
           </a>
-          <a *ngIf="!appService.isSignedIn()" href="#" class="dropdown-item">
+          <a *ngIf="!appService.isSignedIn()" routerLink="/login" class="dropdown-item">
             Sign in
           </a>
           <a *ngIf="!appService.isSignedIn()" href="#" class="dropdown-item">
