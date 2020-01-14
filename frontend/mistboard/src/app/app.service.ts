@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import {User} from "./pojo/user";
+import {UserService} from "./user.service";
+import {Role} from "./pojo/role";
 
 @Injectable({
   providedIn: 'root'
@@ -6,13 +9,19 @@ import { Injectable } from '@angular/core';
 export class AppService {
   private isLogged: boolean;
   private userName: string;
-  constructor() {
+  private currentUser: User;
+  private userService: UserService;
+  constructor(userService: UserService) {
       this.isLogged = false;
       this.userName = 'User';
+      this.userService = userService;
   }
 
   getUsername(): string {
       return this.isLogged ? this.userName : 'Guest';
+  }
+  getRole(): Role {
+    return this.currentUser.role;
   }
   public isSignedIn(): boolean {
     return this.isLogged;
@@ -21,6 +30,7 @@ export class AppService {
     if(login === 'janusz' && passw === 'janusz'){
       this.isLogged = true;
       this.userName = 'Janusz';
+      this.currentUser =  this.userService.getCurrentUser();
       return true;
     }
     return false;

@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
+import { UserControlPageComponent } from './user-control-page/user-control-page.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { RegistrationPageComponent } from './registration-page/registration-page
     MenuComponent,
     GamesPageComponent,
     LoginComponent,
-    RegistrationPageComponent
+    RegistrationPageComponent,
+    UserControlPageComponent
   ],
   imports: [
     BrowserModule,
