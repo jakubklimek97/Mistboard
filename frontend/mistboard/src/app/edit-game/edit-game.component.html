@@ -1,0 +1,54 @@
+
+<div class="container-sm">
+  <div class="py-5 text-center">
+    <h2>Ustawienia gry</h2>
+  </div>
+  <div class="row">
+    <form class="px-5">
+      <div class="mb-3">
+        <label for="gameTitle">Tytuł</label>
+        <input name="title" [ngModel]="title" (ngModelChange)="titleChanged($event)"
+               [ngClass]="this.titleOk ? 'is-valid': 'is-invalid'" class="form-control" type="text" id="gameTitle">
+        <div class="invalid-feedback">
+          Wpisz tytuł
+        </div>
+
+        <label for="gameDescription">Opis</label>
+        <textarea [ngClass]="this.descriptionOk ? 'is-valid': 'is-invalid'" [ngModel]="description"
+                  (ngModelChange)="descriptionChanged($event)" class="form-control" name="description"
+                  id="gameDescription" cols="50" rows="6"></textarea>
+        <div *ngIf="!descriptionOk" class="invalid-feedback">
+          Wpisz krótki opis gry
+        </div>
+
+        <div><label for="gameOperatingSystem">System operacyjny</label></div>
+        <div id="gameOperatingSystem"
+             class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="windows" value="windows">
+          <label class="form-check-label" for="windows">Windows</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="linux" value="linux">
+          <label class="form-check-label" for="linux">Linux</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="macos" value="macos">
+          <label class="form-check-label" for="macos">MacOS</label>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="gameProductionYear">Rok produkcji</label>
+        <input name="gameYear" [ngModel]="this.productionYear" [ngClass]="this.yearOk ? 'is-valid' : 'is-invalid'" class="form-control"  type="text" id="gameProductionYear">
+        <div class="invalid-feedback"></div>
+      </div>
+      <label for="inputGroupFile01">Wybierz pliki</label>
+      <div class="custom-file mb-3">
+
+        <input type="file" multiple class="custom-file-input"
+               id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+        <label class="custom-file-label" for="inputGroupFile01">Wybierz pliki</label>
+      </div>
+      <div><button (click)="this.addGame()" class="btn btn-primary saveBtn">Zapisz</button></div>
+    </form>
+  </div>
+</div>

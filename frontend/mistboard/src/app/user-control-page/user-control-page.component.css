@@ -1,0 +1,7 @@
+.tableHeader{
+  display:flex;
+  justify-content: space-between;
+}
+a:not([href]){
+  color: #007bff;
+}

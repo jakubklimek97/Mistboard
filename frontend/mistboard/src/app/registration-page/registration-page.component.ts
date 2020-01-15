@@ -26,10 +26,8 @@ export class RegistrationPageComponent implements OnInit {
   private passwordRepeatOk: boolean;
   constructor() { }
   ngOnInit() {
-    this.loginOk = true;
     this.emailOk = false;
     this.emailEntered = false;
-    this.loginEntered = false;
     this.passwordEntered = false;
     this.passwordOk = false;
     this.passwordInputEmitter.pipe(debounceTime(1000)).subscribe(val => {

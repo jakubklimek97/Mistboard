@@ -22,17 +22,17 @@
         <a class="nav-link dropdown-toggle" href="#"  id="userDropdown"
            data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-          {{appService.isSignedIn() ? appService.getUsername() : 'Login'}}
+          {{appService.isSignedIn() ? appService.getUsername() : 'Zaloguj'}}
         </a>
         <div class="dropdown-menu" aria-labelledby="userDropdownMenu">
           <a *ngIf="appService.isSignedIn()" (click)="logout()" class="dropdown-item">
-            Logout
+            Wyloguj
           </a>
           <a *ngIf="!appService.isSignedIn()" routerLink="/login" class="dropdown-item">
-            Sign in
+            Zaloguj
           </a>
           <a *ngIf="!appService.isSignedIn()" routerLink="/register" class="dropdown-item">
-            Sign up
+            Zarejestruj
           </a>
         </div>
       </li>

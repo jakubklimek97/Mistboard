@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {User} from "./pojo/user";
 import {UserService} from "./user.service";
 import {Role} from "./pojo/role";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AppService {
   private userName: string;
   private currentUser: User;
   private userService: UserService;
-  constructor(userService: UserService) {
+  constructor(userService: UserService, private router: Router) {
       this.isLogged = false;
       this.userName = 'User';
       this.userService = userService;
@@ -38,5 +39,6 @@ export class AppService {
   public logout() {
     this.userName = 'User';
     this.isLogged = false;
+    this.router.navigateByUrl('');
   }
 }

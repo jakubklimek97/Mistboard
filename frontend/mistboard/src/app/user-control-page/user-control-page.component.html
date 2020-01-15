@@ -1,9 +1,81 @@
 <div class="container-lg">
-  <div class="row py-3">
+  <div class="row">
     <div class="col-xs-12 col-md-8 order-xs-1 order-md-2">
-      Test
+      <span><h4 class="mt-4 tableHeader">
+        <span>Dodane gry</span>
+        <a routerLink="/addGame"><button class="btn btn-outline-primary btn-sm">Dodaj grę</button></a>
+      </h4></span>
+      <table class="table table-hover">
+        <thead>
+        <tr class="thead-dark">
+          <th scope="col">Nazwa</th>
+          <th scope="col">Ocena</th>
+          <th scope="col">Status</th>
+          <th scope="col">Edytuj</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let game of this.getGamesPage(this.currentGamePage)">
+          <td>{{game.title}}</td>
+          <td>3.5</td>
+          <td>Zatwierdzony</td>
+          <td><a routerLink="/editGame/{{game.id}}">Edytuj</a></td>
+        </tr>
+        </tbody>
+      </table>
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [ngClass]="(this.currentGamePage == 1)? 'disabled' : ''"><a (click)="previousGamePage()" class="page-link paginationLink"><<</a>  </li>
+        <li class="page-item active"><a class="page-link">{{this.currentGamePage}}</a></li>
+        <li class="page-item" [ngClass]="(this.currentGamePage == this.lastGamePage)? 'disabled' : ''">
+          <a (click)="this.nextGamePage()"class="page-link"> >> </a></li>
+      </ul>
+      <span><h4 class="mt-4 tableHeader">
+        <span>Twoje zapytania</span>
+        <button class="btn btn-outline-primary btn-sm">Nowe zapytanie</button>
+      </h4></span>
+      <table class="table table-hover">
+        <thead>
+        <tr class="thead-dark">
+          <th scope="col">Nr zapytania</th>
+          <th scope="col">Data modyfikacji</th>
+          <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>21431</td>
+          <td>14.01.2020</td>
+          <td>Otwarte</td>
+        </tr>
+        <tr class="table-warning">
+          <td>21430</td>
+          <td>13.01.2020</td>
+          <td>Odpowiedź</td>
+        </tr>
+        <tr>
+          <td>21429</td>
+          <td>12.01.2020</td>
+          <td>Zamknięte</td>
+        </tr>
+        <tr>
+          <td>21429</td>
+          <td>12.01.2020</td>
+          <td>Zamknięte</td>
+        </tr>
+        <tr>
+          <td>21429</td>
+          <td>12.01.2020</td>
+          <td>Zamknięte</td>
+        </tr>
+        </tbody>
+      </table>
+      <ul class="pagination justify-content-center">
+        <li class="page-item disabled"><a href="#" class="page-link"><<</a>  </li>
+        <li class="page-item active"><a href="#" class="page-link">1</a></li>
+        <li class="page-item"><a href="#" class="page-link"> >> </a></li>
+      </ul>
     </div>
-    <div class=" col-xs-12 col-md-4 order-xs-2 order-md-1">
+    <div class=" col-xs-12 col-md-4 order-xs-2 order-md-2">
       <h4 class="mt-2">Zmień hasło</h4>
       <form>
         <div class="mb-3">
@@ -22,5 +94,4 @@
       </form>
     </div>
   </div>
-  Hello world
 </div>
