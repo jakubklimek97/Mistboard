@@ -12,6 +12,17 @@ public class Password {
     @MapsId
     private User user;
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     private String password;
 
+    public Password(User user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }

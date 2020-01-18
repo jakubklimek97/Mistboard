@@ -3,12 +3,16 @@ package pl.polsl.io.Mistboard.pojo;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 public class User {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -19,7 +23,19 @@ public class User {
     @JsonManagedReference
     private Set<Game> createdGames;
 
-    private Role role;
+    private String role;
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+        //this.password = passwordEncoder.encode(password);
+    }
+
+
 
     public Integer getId(){
         return id;
@@ -32,12 +48,11 @@ public class User {
         this.email = email;
     }
 
-
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
