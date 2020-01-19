@@ -1,6 +1,7 @@
 package pl.polsl.io.Mistboard.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,7 +35,7 @@ public class UserController {
     @GetMapping(path = "")
     public @ResponseBody String getCurrentUserEmail(){
 
-        return "Hello world";
+        return new String("Hello world");
     }
     @PutMapping(path = "")
     public @ResponseBody boolean updateUser(@RequestBody User user){
@@ -53,6 +54,11 @@ public class UserController {
         System.out.println(userDetails.getAuthorities());
         List<User> userList = userServiceImplementation.getAllUsers();
         return userList;
+    }
+    @PutMapping(path = "/email")
+    public @ResponseBody boolean isEmailAvailable(@RequestBody String email){
+        List<User> users = userServiceImplementation.getUserByEmail(email);
+        return !users.isEmpty();
     }
 
 

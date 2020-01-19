@@ -27,12 +27,16 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
         http.formLogin().disable();
         http.httpBasic();
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
+                //.antMatchers("/").permitAll()
+                .antMatchers("/auth").authenticated()
                 .antMatchers("/game/").permitAll()
                 .antMatchers("/game/add/").permitAll()
                // .antMatchers("/**").hasRole("USER").and().formLogin();
-                .antMatchers("/user/").hasAnyRole("USER", "ADMIN")
+               // .antMatchers("/user/").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/user/").permitAll()
+
                 .antMatchers("/user/all").hasRole("ADMIN")
+                .antMatchers("/user/email").permitAll()
                 .antMatchers("/logout").permitAll()
                 .antMatchers("/**").denyAll();
 

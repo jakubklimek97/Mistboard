@@ -12,7 +12,8 @@ export class UserService {
     const user: User = {
       id: 0,
     email: 'example@ex.org',
-    role: Role.ADMINISTRATOR,
+    role: "ROLE_ADMINISTRATOR",
+      password: '',
       createdGames: [
         {
           id: 1,
