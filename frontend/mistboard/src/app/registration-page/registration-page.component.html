@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>Rejestracja</h2>
+    <p class="lead">Wypełnij formularz i kliknij "Zarejestruj", aby utworzyć konto.</p>
+  </div>
+  <div class="row">
+    <form class="px-5">
+      <div class="mb-3">
+        <label for="validationEmail">Email</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend2">@</span>
+          </div>
+          <input [ngClass]="(emailEntered===true)?((emailOk===true)?'is-valid':'is-invalid'):''" type="text" class="form-control" name="emailInput" placeholder="Wpisz email" id="validationEmail"
+                 aria-describedby="inputGroupPrepend2" de required>
+          <div *ngIf="!emailOk" class="invalid-feedback">Niepoprawny Email</div>
+        </div>
+      </div>
+      <div class="mb-3">
+      <label for="password1">Password</label>
+      <input [ngClass]="(passwordEntered===true)?((passwordOk===true)?'is-valid':'is-invalid'):''"
+             [ngModel]="password" (ngModelChange)="this.passwordChanged($event)"
+             type="password" class="form-control" name="passwordInput1" placeholder="Wpisz hasło" id="password1"
+             required>
+      <div *ngIf="!passwordOk" class="invalid-feedback">Hasło nie spełnia norm</div>
+
+    </div>
+      <div class="mb-3">
+        <input [ngClass]="(passwordRepeatEntered===true)?((passwordRepeatOk===true)?'is-valid':'is-invalid'):''"
+               [ngModel]="passwordRepeat" (ngModelChange)="passwordRepeatChanged($event)"
+               type="password" class="form-control" name="passwordInput1" placeholder="Powtórz hasło" id="password2"
+               required>
+        <div *ngIf="!password2Ok" class="invalid-feedback">Hasła muszą być identyczne</div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>

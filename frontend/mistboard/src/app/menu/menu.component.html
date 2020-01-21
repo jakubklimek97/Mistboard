@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a href="#" class="navbar-brand">Mistboard</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+  data-target="#menu" aria-controls="menu" aria-expanded="false"
+          aria-label="Otworz menu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="menu">
+    <ul class="navbar-nav mr-auto">
+      <li routerLinkActive="active" class="nav-item">
+        <a routerLink="/games" class="nav-link">Lista gier</a>
+      </li>
+      <li *ngIf="appService.isSignedIn() && appService.getRole() >= 0" class="nav-item">
+        <a class="nav-link" routerLink="/user" >Twój profil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#"  id="userDropdown"
+           data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+          {{appService.isSignedIn() ? appService.getUsername() : 'Zaloguj'}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="userDropdownMenu">
+          <a *ngIf="appService.isSignedIn()" (click)="logout()" class="dropdown-item">
+            Wyloguj
+          </a>
+          <a *ngIf="!appService.isSignedIn()" routerLink="/login" class="dropdown-item">
+            Zaloguj
+          </a>
+          <a *ngIf="!appService.isSignedIn()" routerLink="/register" class="dropdown-item">
+            Zarejestruj
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

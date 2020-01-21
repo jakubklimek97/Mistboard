@@ -1,0 +1,10 @@
+@media(min-width: 600px) {
+  .row {
+    width: 502px;
+    margin: auto;
+  }
+
+}
+.saveBtn{
+  width: 100%;
+}
