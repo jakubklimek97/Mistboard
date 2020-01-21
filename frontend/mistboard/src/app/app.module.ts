@@ -10,6 +10,8 @@ import {FormsModule} from "@angular/forms";
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
 import { UserControlPageComponent } from './user-control-page/user-control-page.component';
 import { EditGameComponent } from './edit-game/edit-game.component';
+import {HttpClientModule} from "@angular/common/http";
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { EditGameComponent } from './edit-game/edit-game.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent, MenuComponent]

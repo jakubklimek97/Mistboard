@@ -8,4 +8,6 @@
     <button class="btn btn-lg btn-primary btn-block" type="button" (click)="signIn()">Zaloguj</button>
   </form>
 </div>
->
+<div *ngIf="this.appService.AreCredientalsWrong()">
+  Błędny email/hasło
+</div>

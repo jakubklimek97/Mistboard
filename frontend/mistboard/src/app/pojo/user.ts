@@ -4,6 +4,7 @@ import {Game} from "./game";
 export class User {
      public  id: number;
        public email: string;
-     public role: Role;
+     public role: string;
      createdGames: Game[];
+     public password: string;
 }
