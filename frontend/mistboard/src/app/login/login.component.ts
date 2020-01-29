@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
        email: this.login,
        password: this.password
      };
-     console.log(this.login + '|' + this.password);
      this.appService.authenticate(loginData);
+     this.router.navigateByUrl('/');
   }
 
 

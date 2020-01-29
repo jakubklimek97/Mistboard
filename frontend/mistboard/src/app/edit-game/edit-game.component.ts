@@ -68,7 +68,8 @@ export class EditGameComponent implements OnInit {
           description: {
             productionYear: this.productionYear,
             os: newOs,
-            id: null
+            id: null,
+            textDescription: this.description
           }
         };
         const header: HttpHeaders = this.appService.getHeaders();
@@ -82,6 +83,7 @@ export class EditGameComponent implements OnInit {
         this.game.title = this.title;
         this.game.description.os = newOs;
         this.game.description.productionYear = this.productionYear;
+        this.game.description.textDescription = this.description;
         const header: HttpHeaders = this.appService.getHeaders();
         this.http.post<Game>('http://localhost:4200/api/game/edit/' + this.id, this.game,
           {headers: header}).subscribe((response: Game) => {
@@ -105,8 +107,10 @@ export class EditGameComponent implements OnInit {
           case OperatingSystem.LINUX: this.checkboxLinux = true; break;
           case OperatingSystem.MACOS: this.checkboxMacos = true; break;
         }
+        this.description = response.description.textDescription;
         this.titleChanged(this.title);
         this.yearChanged();
+        this.descriptionChanged(this.description);
         this.game = response;
       }
     );

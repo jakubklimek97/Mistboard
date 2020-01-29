@@ -4,5 +4,5 @@ export class Description {
   id: number;
   productionYear: number;
   os: OperatingSystem;
-
+  textDescription: string;
 }

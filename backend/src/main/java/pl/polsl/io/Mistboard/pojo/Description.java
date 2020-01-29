@@ -22,6 +22,8 @@ public class Description {
 
     private OperatingSystem os;
 
+    private String textDescription;
+
     public Game getGame() {
         return game;
     }
@@ -44,5 +46,13 @@ public class Description {
 
     public void setOs(OperatingSystem os) {
         this.os = os;
+    }
+
+    public String getTextDescription() {
+        return textDescription;
+    }
+
+    public void setTextDescription(String textDescription) {
+        this.textDescription = textDescription;
     }
 }

@@ -83,6 +83,7 @@ public class GameController {
             newGame.setDescription(new Description());
             newGame.getDescription().setGame(newGame);
             newGame.getDescription().setOs(modifiedGame.getDescription().getOs());
+            newGame.getDescription().setTextDescription(modifiedGame.getDescription().getTextDescription());
             newGame.getDescription().setProductionYear(modifiedGame.getDescription().getProductionYear());
             return gameServiceImplementation.addGame(newGame);
         }
@@ -97,6 +98,7 @@ public class GameController {
                     if (game.getId() == id) {
                         game.setTitle(modifiedGame.getTitle());
                         game.getDescription().setOs(modifiedGame.getDescription().getOs());
+                        game.getDescription().setTextDescription(modifiedGame.getDescription().getTextDescription());
                         game.getDescription().setProductionYear(modifiedGame.getDescription().getProductionYear());
                         gameRepository.save(game);
                         return (game);
