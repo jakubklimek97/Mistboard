@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -30,18 +31,20 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/").permitAll()
                 .antMatchers("/auth").authenticated()
                 .antMatchers("/game/").permitAll()
-                .antMatchers("/game/user").authenticated()
-                .antMatchers("/game/add/").permitAll()
+                .antMatchers("/game/**").authenticated()
+                .antMatchers("/game/edit/**").permitAll()
                // .antMatchers("/**").hasRole("USER").and().formLogin();
                // .antMatchers("/user/").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/user").permitAll()
 
                 .antMatchers("/user/all").hasRole("ADMIN")
                 .antMatchers("/user/email").permitAll()
-                .antMatchers("/logout").permitAll()
+                .antMatchers("/logoff").permitAll()
                 .antMatchers("/**").denyAll();
 
         http.csrf().disable();
+        http.sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Bean

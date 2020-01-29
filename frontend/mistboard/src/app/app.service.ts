@@ -38,7 +38,6 @@ export class AppService {
   }
   getRole(): Role {
     return Role.ADMINISTRATOR;
-    //return this.currentUser.role;
   }
   public isSignedIn(): boolean {
     return this.isLogged;
@@ -73,9 +72,22 @@ export class AppService {
       }
     );
   }
+  public getHeaders(): HttpHeaders {
+    console.log('headers' + this.loginData);
+    const header = new HttpHeaders(this.loginData ? {
+      Authorization: 'Basic ' +
+        btoa(this.loginData.email + ':' + this.loginData.password)
+    } : {}).set('X-Requested-With', 'XMLHttpRequest');
+    return header;
+  }
   public logout() {
-    this.userName = 'User';
+    this.userName = 'Zaloguj';
     this.isLogged = false;
-    this.router.navigateByUrl('');
+    this.loginData = null;
+    this.http.get('http://localhost:8080/logout', {headers: this.getHeaders()});
+    this.router.navigateByUrl('/login');
+  }
+  public navigateTo(url: string) {
+    this.router.navigateByUrl(url);
   }
 }

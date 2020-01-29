@@ -45,4 +45,8 @@ public class Game {
     public Description getDescription() {
         return description;
     }
+
+    public void setDescription(Description description) {
+        this.description = description;
+    }
 }

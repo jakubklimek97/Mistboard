@@ -1,12 +1,13 @@
 package pl.polsl.io.Mistboard.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pl.polsl.io.Mistboard.pojo.Game;
 import pl.polsl.io.Mistboard.pojo.User;
 import pl.polsl.io.Mistboard.repository.GameRepository;
 
 import java.util.List;
-
+@Service
 public class GameServiceImplementation implements GameService {
 
     @Autowired
