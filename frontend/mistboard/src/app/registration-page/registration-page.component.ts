@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Subject} from "rxjs";
-import {debounceTime} from "rxjs/operators";
-import {log} from "util";
+import {Subject} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
+import {log} from 'util';
+import {User} from '../pojo/user';
+import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
 
 @Component({
   selector: 'app-registration-page',
@@ -18,14 +20,16 @@ export class RegistrationPageComponent implements OnInit {
   private password2Ok: boolean;
   private passwordEntered: boolean;
   private password2Entered: boolean;
+  private email: string;
   private password: string;
   private passwordInputEmitter: Subject<string> = new Subject<string>();
   private passwordRepeat: string;
   private passwordRepeatInputEmitter: Subject<string> = new Subject<string>();
   private passwordRepeatEntered: boolean;
   private passwordRepeatOk: boolean;
-  constructor() { }
+  constructor(private http: HttpClient) { }
   ngOnInit() {
+    this.email = '';
     this.emailOk = false;
     this.emailEntered = false;
     this.passwordEntered = false;
@@ -52,5 +56,23 @@ export class RegistrationPageComponent implements OnInit {
   passwordRepeatChanged(value: string) {
     this.passwordRepeatInputEmitter.next(value);
   }
+
+  register() {
+      const newUser: User = new User();
+
+      newUser.email = this.email;
+      newUser.password = this.password;
+      newUser.id = 0;
+
+      this.http.put<boolean>('http://localhost:4200/api/user', newUser).subscribe((response: boolean) => {
+          if (response === true) {
+            console.log('TRUE');
+          } else {
+            console.log('FALSE');
+        }
+      });
+  }
+
+
 
 }

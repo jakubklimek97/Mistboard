@@ -29,11 +29,11 @@ export class LoginComponent implements OnInit {
      /*if(this.appService.signIn(this.login, this.password)){
        this.router.navigateByUrl('/');
      }*/
-     log("KLIK ZALOGUJ");
      const loginData: LoginData = {
        email: this.login,
        password: this.password
      };
+     console.log(this.login + '|' + this.password);
      this.appService.authenticate(loginData);
   }
 

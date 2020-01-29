@@ -30,10 +30,11 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/").permitAll()
                 .antMatchers("/auth").authenticated()
                 .antMatchers("/game/").permitAll()
+                .antMatchers("/game/user").authenticated()
                 .antMatchers("/game/add/").permitAll()
                // .antMatchers("/**").hasRole("USER").and().formLogin();
                // .antMatchers("/user/").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/user/").permitAll()
+                .antMatchers("/user").permitAll()
 
                 .antMatchers("/user/all").hasRole("ADMIN")
                 .antMatchers("/user/email").permitAll()

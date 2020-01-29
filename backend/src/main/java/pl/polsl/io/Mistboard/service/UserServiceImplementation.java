@@ -14,7 +14,6 @@ public class UserServiceImplementation implements userService {
     @Autowired
     UserRepository userRepository;
 
-
     @Override
     public boolean addUser(User user) {
         if(user == null)

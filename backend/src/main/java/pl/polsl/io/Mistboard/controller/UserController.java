@@ -60,6 +60,12 @@ public class UserController {
         List<User> users = userServiceImplementation.getUserByEmail(email);
         return !users.isEmpty();
     }
-
+    @GetMapping(path="/info")
+    public @ResponseBody User getUserInfo(Authentication authentication){
+        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+        String username = userDetails.getUsername();
+        List<User> users = userServiceImplementation.getUserByEmail(username);
+        return users.get(0);
+    }
 
 }

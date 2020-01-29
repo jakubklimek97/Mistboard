@@ -13,6 +13,8 @@ import java.util.Set;
 public class User {
 
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -39,6 +41,10 @@ public class User {
 
     public Integer getId(){
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
     public String getEmail() {
         return email;

@@ -1,6 +1,9 @@
 package pl.polsl.io.Mistboard.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pl.polsl.io.Mistboard.pojo.Description;
@@ -9,7 +12,10 @@ import pl.polsl.io.Mistboard.pojo.User;
 import pl.polsl.io.Mistboard.repository.DescriptionRepository;
 import pl.polsl.io.Mistboard.repository.GameRepository;
 import pl.polsl.io.Mistboard.repository.UserRepository;
+import pl.polsl.io.Mistboard.service.UserServiceImplementation;
+import pl.polsl.io.Mistboard.service.userService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -17,13 +23,15 @@ import java.util.Optional;
 public class GameController {
     @Autowired
     private GameRepository gameRepository;
-
-
+    @Autowired
+    private userService userServiceImplementation;
     //temporary
     @Autowired
     private DescriptionRepository descriptionRepository;
     @Autowired
     private UserRepository userRepository;
+
+
 
     @GetMapping(path="")
     public @ResponseBody Iterable<Game> getAllGames(){
@@ -74,4 +82,14 @@ public class GameController {
         return modifiedGame;
     }
 
+    @GetMapping(path = "/user")
+    public @ResponseBody
+    List<Game> getAllUserGames(Authentication authentication){
+        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+        List <User> userList = userServiceImplementation.getUserByEmail(userDetails.getUsername());
+        User user = userList.get(0);
+        List<Game> userGames = gameRepository.findByAuthor(user, PageRequest.of(0,0));
+        return userGames;
+
+    }
 }
